@@ -44,7 +44,10 @@
           _results = [];
           for (type in _ref) {
             config = _ref[type];
-            _results.push(request(opts.site, type, config).then(render_single_views.bind(this, config, type)).then(add_urls_to_posts).then(add_tags_to_res).then(add_posts_to_locals.bind(this, type)));
+            _results.push(request(opts.site, type, config)
+              .then(render_single_views.bind(this, config, type))// returns an object {urls: [...],posts: [...]};
+              .then(add_urls_to_posts)//returns array of post objects
+              .then(add_posts_to_locals.bind(this, type)));// adds data to wordpress[type]
           }
           return _results;
         }).call(this);
@@ -77,26 +80,30 @@
       };
     }
     return W.map(posts, (function(_this) {
+      //call tag tree function here?
       return function(p) {
         var compiler, locals, output, tpl;
         tpl = path.join(_this.roots.root, config.template);
         locals = _.merge(_this.roots.config.locals, {
           post: p
         });
-        output = "" + type + "/" + p.slug + ".html";
+        output = "" + type + "/" + p.slug + ".html"; //replicate for tags obj.keys
         compiler = _.find(_this.roots.config.compilers, function(c) {
           return _.contains(c.extensions, path.extname(tpl).substring(1));
         });
-        return compiler.renderFile(tpl, _.cloneDeep(locals)).then(function(res) {
-          return _this.util.write(output, res.result);
-        })["yield"](output);
+        return compiler.renderFile(tpl, _.cloneDeep(locals))
+          .then(function(res) {
+            return _this.util.write(output, res.result);
+          })["yield"](output);
       };
-    })(this)).then(function(urls) {
-      return {
-        urls: urls,
-        posts: posts
-      };
-    });
+    })(this))
+      .then(function(urls) {
+        return {
+          //tag_tree: tags
+          urls: urls,
+          posts: posts
+        };
+      });
   };
 
   add_urls_to_posts = function(obj) {
@@ -107,6 +114,7 @@
   };
 
   add_posts_to_locals = function(type, posts) {
+    this.roots.config.locals.wordpress.tags_tree = create_tag_tree(posts);
     return this.roots.config.locals.wordpress[type] = posts;
   };
 
@@ -118,20 +126,19 @@
     }
   }
 
-  add_tags_to_res = function (obj) {
-    console.log('tag tree function')
-    obj.tags_tree = {}
-    for(var post in obj.posts) {
+  create_tag_tree = function (posts) {
+    var tags_tree = {}
+    posts.map(function(post){
       post.tags.map(function(tag_obj) {
         var tag = tag_obj.name
-        if(!obj.tags_tree[tag]) {
-          obj.tags_tree[tag] = tag_tree_entry(post)
+        if(!tags_tree[tag]) {
+          tags_tree[tag] = [tag_tree_entry(post)]
         } else {
-          obj.tags_tree[tag].push(tag_tree_entry(post))
+          tags_tree[tag].push(tag_tree_entry(post))
         }
       })
-    }
-    return obj
+    })
+    return tags_tree
   }
 
 }).call(this);

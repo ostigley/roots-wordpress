@@ -18,9 +18,9 @@
       return function(p) {
         var compiler, locals, output, tpl;
         tpl = path.join(_this.roots.root, config.template);
-        locals = _.merge(_this.roots.config.locals, {
-          tag: tag_tree[p]
-        });
+        locals = _this.roots.config.locals
+        locals.tag = tag_tree[p]
+        
         output = "tags/" + p + ".html";
         compiler = _.find(_this.roots.config.compilers, function(c) {
           return _.contains(c.extensions, path.extname(tpl).substring(1));
@@ -74,6 +74,7 @@
           var posts;
           var tag_tree
           var render_tags = render_tag_views.bind(this)
+          // findTags.bind(this)
           for (type in _ref) {
             config = _ref[type];
             _results.push(request(opts.site, type, config)
@@ -163,7 +164,7 @@
         var slug = post.tags[tag].slug
         if(!tag_tree[slug]) {
           tag_tree[slug] = {posts: [post], slug: slug}
-        } else {
+        } else  {
           tag_tree[slug].posts.push(post)
         }
       })

@@ -26,12 +26,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/carrot/roots-wordpress.git"
+    "url": "https://github.com/ostigley/roots-wordpress-tags.git"
   },
   "keywords": [
     "rootsextension"
   ],
-  "author": "Oliver Stigley.  Original code Jeff Escalante",
+  "author": "Oliver Stigley",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ostigley/roots-wordpress-tags/issues"

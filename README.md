@@ -13,7 +13,7 @@ Thanks to [Carrot](https://github.com/carrot/roots-wordpress) for making a handy
 - modify your `app.coffee` file to include the extension, as such
 
   ```coffee
-  wordpress = require('roots-wordpress')
+  wordpress = require('roots-wordpress-tags')
 
   module.exports =
     extensions: [

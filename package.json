@@ -1,7 +1,7 @@
 {
-  "name": "roots-wordpress",
-  "version": "0.3.1",
-  "description": "Pull wordpress posts into your roots project",
+  "name": "roots-wordpress-tags",
+  "version": "0.0.1",
+  "description": "Pull wordpress posts AND tags into your roots project",
   "main": "lib",
   "dependencies": {
     "lodash": "3.x",
@@ -31,10 +31,10 @@
   "keywords": [
     "rootsextension"
   ],
-  "author": "Jeff Escalante",
+  "author": "Oliver Stigley.  Original code Jeff Escalante",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/carrot/roots-wordpress/issues"
+    "url": "https://github.com/ostigley/roots-wordpress-tags/issues"
   },
-  "homepage": "https://github.com/carrot/roots-wordpress"
+  "homepage": "https://github.com/ostigley/roots-wordpress-tags"
 }

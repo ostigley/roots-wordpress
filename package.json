@@ -1,6 +1,6 @@
 {
   "name": "roots-wordpress-tags",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Pull wordpress posts AND tags into your roots project",
   "main": "lib",
   "dependencies": {

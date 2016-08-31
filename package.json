@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    
+    "coverage": "make build; NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha; make unbuild; open coverage/lcov-report/index.html;",
+    "coveralls": "make build; make coveralls; make unbuild;"
   },
   "repository": {
     "type": "git",

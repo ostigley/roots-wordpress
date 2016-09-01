@@ -1,10 +1,8 @@
 build:
-	mv lib src
-	coffee -c -o lib/ src/
+	coffee --compile --output lib/ src/
 
-unbuild:
+clean:
 	rm -rf lib
-	mv src lib
 
 publish:
 	make build

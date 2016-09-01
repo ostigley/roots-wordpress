@@ -1,6 +1,6 @@
 build:
 	mv lib src
-	coffee -o lib -c src
+	coffee -c -o lib/ src/
 
 unbuild:
 	rm -rf lib

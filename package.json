@@ -1,19 +1,19 @@
 {
   "name": "roots-wordpress-tags",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Pull wordpress posts AND tags into your roots project",
-  "main": "lib",
+  "main": "src",
   "dependencies": {
     "lodash": "3.x",
     "rest": "1.x",
     "roots-util": "0.1.x",
-    "when": "3.x"
+    "when": "3.x",
+    "coffee-script": "*"    
   },
   "devDependencies": {
     "chai": "2.x",
     "chai-as-promised": "5.x",
     "chai-fs": "jenius/chai-fs",
-    "coffee-script": "1.9.x",
     "coveralls": "2.x",
     "istanbul": "0.3.x",
     "mocha": "2.x",
